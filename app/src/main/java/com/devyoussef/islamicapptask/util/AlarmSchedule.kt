@@ -50,4 +50,16 @@ object AlarmSchedule {
         return 0L
     }
 
+    fun stopAlarm(context: Context) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlarmReceiver::class.java)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            (0 .. 1999992).random(),
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        alarmManager.cancel(pendingIntent)
+    }
 }

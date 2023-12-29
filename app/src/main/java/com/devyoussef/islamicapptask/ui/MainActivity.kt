@@ -20,6 +20,7 @@ import com.devyoussef.islamicapptask.constant.Constants.convertToAmPm
 import com.devyoussef.islamicapptask.databinding.ActivityMainBinding
 import com.devyoussef.islamicapptask.util.AlarmReceiver
 import com.devyoussef.islamicapptask.util.AlarmSchedule
+import com.devyoussef.islamicapptask.util.AlarmSchedule.stopAlarm
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -36,9 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
     private var prayerTimes: List<String?> = emptyList()
-    private val alarmManager by lazy {
-        getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +53,10 @@ class MainActivity : AppCompatActivity() {
         collectStates()
         binding.btnStartTimer.setOnClickListener {
             scheduleAlarms()
+        }
+        binding.btnStopTimer.setOnClickListener {
+            stopAlarm(applicationContext)
+            Toast.makeText(applicationContext, "alarm stopped", Toast.LENGTH_SHORT).show()
         }
 
 

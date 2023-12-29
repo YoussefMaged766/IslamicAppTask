@@ -20,7 +20,7 @@ import java.util.Locale
 import javax.inject.Inject
 
 class Repo @Inject constructor(
-    val webServices: WebServices,
+    private val webServices: WebServices,
     @ApplicationContext private val context: Context,
     private val prayerDao: PrayerDao
 ) {
