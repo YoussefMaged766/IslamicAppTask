@@ -132,25 +132,6 @@ class MainActivity : AppCompatActivity() {
         return sdf.format(date)
     }
 
-    fun getSevenDays(): List<String> {
-        val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy")
-        val currentDate = LocalDate.now()
-        val sevenDaysLater = currentDate.plusDays(7)
-
-        val dateList = mutableListOf<String>()
-
-        var currentDateIterator = currentDate
-        while (currentDateIterator.isBefore(sevenDaysLater) || currentDateIterator.isEqual(
-                sevenDaysLater
-            )
-        ) {
-            dateList.add(currentDateIterator.format(formatter))
-            currentDateIterator = currentDateIterator.plusDays(1)
-        }
-
-        return dateList
-    }
-
     private fun generatePrayerTimesList(
         readableDate: String?,
         fajr: String?,
